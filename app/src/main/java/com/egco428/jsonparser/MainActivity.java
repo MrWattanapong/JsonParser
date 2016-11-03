@@ -28,15 +28,16 @@ public class MainActivity extends AppCompatActivity {
     public void openWeatherMethod(View view){
         String url = location.getText().toString();
         String finalUrl = url1 + url + url2;
-        
 
         obj = new JsonParser(finalUrl);
         obj.fetchJSON();
         while (obj.parsingComplete);
         country.setText(obj.getCountry());
-        temperature.setText(obj.getTemperature());
         humidity.setText(obj.getHumidity());
         pressure.setText(obj.getPressure());
 
+        float cc = (float) (Float.parseFloat(obj.getTemperature()) - 273.15);
+
+        temperature.setText(String.valueOf(cc));
     }
 }
